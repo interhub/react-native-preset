@@ -1,8 +1,8 @@
-# Liverpool doc
+# PATTERN doc
 
 > Шаблон содержит переиспользуемые файлы для конфигурации каждого нового проекта для разработки на REACT NATIVE
 > Для использование требуется скопировать конфигурации разностией файлов в новый проект , а точнее папки <br>
-android, ios, src directory, doc builder и все вкрипты запуска проекта 
+android, ios, src directory, doc builder и все вкрипты запуска проекта
 
 # 0. Contact, participants and links
 
