@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.annotation.Nullable;
 
-import com.microsoft.codepush.react.CodePush;
+import com.microsoft.codepush.react.CodePush; //TODO <-- ADD THIS TO CODE PUSH
 
 public class MainApplication extends Application implements ReactApplication {
   private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(
@@ -59,7 +59,7 @@ public class MainApplication extends Application implements ReactApplication {
         return super.getJSBundleFile();
       } else {
         // return UpdatesController.getInstance().getLaunchAssetFile();
-        return CodePush.getJSBundleFile();
+        return CodePush.getJSBundleFile(); //TODO <-- ADD THIS TO CODE PUSH
       }
     }
 

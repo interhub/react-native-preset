@@ -18,10 +18,9 @@ public class MainActivity extends ReactActivity {
     super.onCreate(savedInstanceState);
     // SplashScreen.show(...) has to be called after super.onCreate(...)
     // Below line is handled by '@expo/configure-splash-screen' command and it's discouraged to modify it manually
-    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-    SplashScreen.show(this, SplashScreenImageResizeMode.COVER, ReactRootView.class, true);
+    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);                 //TODO <-- ADD THIS FOR NIGHT MODE DISABLE
+    SplashScreen.show(this, SplashScreenImageResizeMode.COVER, ReactRootView.class, true); //TODO <-- ADD FOR SPLASH SCREEN CONFIG STYLING
   } 
-
 
     /**
      * Returns the name of the main component registered from JavaScript.
