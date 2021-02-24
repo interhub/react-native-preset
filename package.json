@@ -1,7 +1,8 @@
 {
   "main": "index.js",
   "scripts": {
-    "start:server": "react-native start",
+    "start": "react-native start",
+    "start:reset": "react-native start --reset-cache",
     "start:expo": "expo start",
     "publish:expo": "expo publish -t managed",
     "android": "react-native run-android",
