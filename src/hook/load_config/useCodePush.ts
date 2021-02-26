@@ -6,19 +6,20 @@ import codePush from 'react-native-code-push'
  */
 const SLEEP_TIME = 1000
 
+const hideSplash = () => SplashScreen.hideAsync();
 
 /**
  @hook for code push reload and update
  */
 const useCodePush = () => {
     const syncCodePush = async (): Promise<boolean> => {
-        if (__DEV__) return false
+        if (__DEV__) return hideSplash()
         return new Promise((ok) => {
             codePush.sync({installMode: codePush.InstallMode.IMMEDIATE,},
                 (status) => {
                     switch (status) {
                         case codePush.SyncStatus.UP_TO_DATE:
-                            SplashScreen.hideAsync();
+                            hideSplash();
                             return ok(true)
                         case codePush.SyncStatus.UNKNOWN_ERROR:
                             return ok(true)
