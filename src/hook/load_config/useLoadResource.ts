@@ -1,46 +1,37 @@
-import * as SplashScreen from 'expo-splash-screen'
-import { useLayoutEffect, useState } from 'react'
-import waitSleep from '../../config/waitSleep'
+import {useLayoutEffect, useState} from 'react'
 import useCodePush from './useCodePush'
 import useFontLoad from './useFontLoad'
-import useUpdateInfo from './useUpdateInfo'
-
-
+import {useSelectorProp} from "../state/useSelectorProp";
 
 /**
  * @hook important hook for initialize user store state from server
  */
 export default () => {
-	const [isLoaded, setIsLoaded] = useState(false)
+    const [isLoaded, setIsLoaded] = useState(false)
+    const {token} = useSelectorProp('token')
+    const isAuth = !!token
 
-	const { syncCodePush } = useCodePush()
-	const { loadFont } = useFontLoad()
-	const { updateTableInfo } = useUpdateInfo()
+    const {syncCodePush} = useCodePush()
+    const {loadFont} = useFontLoad()
 
-	const startUpdateCycle = async () => {
-		await waitSleep()
-		await updateTableInfo()
-		startUpdateCycle()
-	}
+    //TODO ADD API REQUESTS START AUTH AND NOT AUTH
+    const loadAppResource = async () => {
+        try {
+            await syncCodePush()
+            await loadFont()
+        } catch (e) {
+            console.warn(e, 'ERR LOAD RESOURCE AND SPASH')
+        } finally {
+            setIsLoaded(true)
+        }
+    }
 
-	const loadAppResource = async () => {
-		try {
-			await syncCodePush()
-			loadFont()
-		} catch (e) {
-			console.warn(e, 'ERR LOAD RESOURCE AND SPASH')
-		} finally {
-			await updateTableInfo()
-			setIsLoaded(true)
-			startUpdateCycle()
-		}
-	}
+    useLayoutEffect(() => {
+        loadAppResource()
+    }, [])
 
-	useLayoutEffect(() => {
-		loadAppResource()
-	}, [])
-
-	return {
-		isLoaded,
-	}
+    return {
+        isLoaded,
+        isAuth
+    }
 }
