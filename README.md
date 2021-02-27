@@ -30,6 +30,7 @@ android, ios, src directory, doc builder и все вкрипты запуска
 - [react native yandex map doc](https://www.npmjs.com/package/react-native-yamap)
 - [redux doc](https://redux.js.org/introduction/getting-started)
 - [redux tool kit doc](https://redux-toolkit.js.org/introduction/quick-start)
+- [react-navigation-shared-element doc](https://gist.github.com/mrousavy/6029c7a4eb58f7603e79a136053ff976)
 
 # 1. NPM **command**
 
