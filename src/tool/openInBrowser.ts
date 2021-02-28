@@ -1,7 +1,7 @@
 import * as Linking from 'expo-linking'
-import Message from '../components/Message'
+import Message from '../config/Message'
 
-/** 
+/**
 open links in browser or deep linked links
 */
 export default (url: string) => {
