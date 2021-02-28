@@ -1,10 +1,10 @@
 import React from 'react'
 import {ScrollView, useWindowDimensions} from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
-import {getStyleByPropsFuncType, PaddingTypes} from '../../type/types'
+import {getStyleByPropsFuncType} from '../../type/types'
 import SIZE from '../../constants/SIZE'
 import INSERTS from "../../constants/INSERTS";
-import {useGetPropsMarginPaddingStyle} from "../../config/styleGenerator";
+import {PaddingTypes, useGetPropsMarginPaddingStyle} from '../../config/styleGenerator'
 
 type ScrollViewContainerProps<T = React.ComponentPropsWithoutRef<typeof ScrollView>> = T & {
     children: React.ReactNode
