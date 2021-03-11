@@ -17,6 +17,8 @@
     "test": "jest src/test/*",
     "documentation:type": "typedoc --readme README.md --name Liverpool --out ./docs/ --tsconfig tsconfig.json",
     "documentation:word": "cd doc_builder && node builder.js",
+    "xcode:open": "xed ./ios",
+    "android_studio:open": "open -a Android\\ Studio \"android\"",
     "start": "react-native start"
   },
   "dependencies": {
