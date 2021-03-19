@@ -1,4 +1,2 @@
-import SLEEP_TIME from '../vars/SLEEP_TIME'
-
-const waitSleep = async () => await new Promise((ok) => setTimeout(ok, SLEEP_TIME))
+const waitSleep = async (time: number) => await new Promise((ok) => setTimeout(ok, time))
 export default waitSleep

@@ -1,4 +1,4 @@
-/** 
+/**
 get shadow state for layout style
 */
 export default function getShadow(val = 1): Object {

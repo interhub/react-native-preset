@@ -1,29 +1,39 @@
 import React from 'react'
-import {KeyboardAvoidingView} from 'react-native'
-import codePush from 'react-native-code-push'
-import 'react-native-gesture-handler'
-import {Provider as ReduxProvider} from 'react-redux'
 import {PersistGate} from 'redux-persist/integration/react'
+import {Provider as ReduxProvider} from 'react-redux'
+import codePush from 'react-native-code-push'
+import {ApolloProvider} from '@apollo/client'
+
 import setUpConfig from './src/config/setUpConfig'
+import ProviderStatusBar from './src/components/Provider/ProviderStatusBar'
 import AppNavigator from './src/navigators/AppNavigator'
 import {persistor, store} from './src/store/store'
-import IS_IOS from './src/vars/IS_IOS'
-import 'react-native-gesture-handler'
+import ProviderRootKeyboard from './src/components/Provider/ProviderRootKeyboard'
+import {COLOR} from './src/constants/COLOR'
+import client from './src/graphql'
+
 setUpConfig()
 
-const ProviderApp = () => {
+const App = () => {
   return (
-    <KeyboardAvoidingView style={[{flex: 1}]} behavior={IS_IOS ? 'height' : undefined}>
-      <ReduxProvider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <AppNavigator />
-        </PersistGate>
-      </ReduxProvider>
-    </KeyboardAvoidingView>
+    <ProviderRootKeyboard bg={COLOR.GRAY_DARK}>
+      <ProviderStatusBar>
+        <ReduxProvider store={store}>
+          <ApolloProvider client={client}>
+            <PersistGate loading={null} persistor={persistor}>
+              <AppNavigator />
+            </PersistGate>
+          </ApolloProvider>
+        </ReduxProvider>
+      </ProviderStatusBar>
+    </ProviderRootKeyboard>
   )
 }
 
-const codePushOptions = {checkFrequency: codePush.CheckFrequency.MANUAL, installMode: codePush.InstallMode.IMMEDIATE}
-const codePushProvider = codePush(codePushOptions)(ProviderApp)
+const codePushOptions = {
+  checkFrequency: codePush.CheckFrequency.MANUAL,
+  installMode: codePush.InstallMode.IMMEDIATE,
+}
+const codePushProvider = codePush(codePushOptions)(App)
 codePush.notifyAppReady()
-export default __DEV__ ? ProviderApp : codePushProvider
+export default __DEV__ ? App : codePushProvider

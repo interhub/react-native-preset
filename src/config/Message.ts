@@ -2,13 +2,15 @@ import {Alert} from 'react-native'
 
 const TIMEOUT = 1000
 
-/** 
+/**
 alert display message
 */
-export default ((message = '', title = '') => {
+export default (() => {
   let ready = true
   return (message = '', title = '') => {
-    if (!ready) return
+    if (!ready) {
+      return
+    }
     ready = false
     setTimeout(() => {
       ready = true

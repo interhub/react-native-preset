@@ -1,4 +1,4 @@
-import {LayoutAnimation} from 'react-native'
+import { LayoutAnimation } from 'react-native'
 
 /** 
 call layout animation with change state for flexbox maket 

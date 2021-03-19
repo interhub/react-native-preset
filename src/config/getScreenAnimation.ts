@@ -1,6 +1,6 @@
+import {CardStyleInterpolators, StackNavigationOptions} from '@react-navigation/stack'
+
 import {COLOR} from '../constants/COLOR'
-import {CardStyleInterpolators, StackNavigationOptions, TransitionSpecs} from '@react-navigation/stack'
-import getShadow from './getShadow'
 
 /**
  animation types for react-navigation from https://reactnavigation.org/docs/stack-navigator/#transitionpresets
@@ -34,13 +34,12 @@ const ANIMATION = {
  */
 export default (animation = SCREEN_ANIMATION.NONE, swipe = true): StackNavigationOptions => ({
   headerShown: false,
-  //@ts-ignore
   cardStyleInterpolator: ANIMATION[animation],
   gestureEnabled: swipe,
   gestureDirection: 'horizontal',
   animationTypeForReplace: 'push',
   gestureResponseDistance: {vertical: 0, horizontal: 20},
   cardStyle: {
-    backgroundColor: COLOR.WHITE,
+    backgroundColor: COLOR.BLACK_DARK,
   },
 })
