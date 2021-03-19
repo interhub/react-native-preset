@@ -1,4 +1,4 @@
-import { NavigationContainerRef } from '@react-navigation/native'
+import {NavigationContainerRef} from '@react-navigation/native'
 import React from 'react'
 
 /** 
@@ -6,4 +6,4 @@ navigation ref for change navigation state without navigation context and withou
 */
 const navigationRef = React.createRef<NavigationContainerRef>()
 
-export default navigationRef 
+export default navigationRef

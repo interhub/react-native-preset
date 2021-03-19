@@ -47,11 +47,11 @@ export default class App extends React.PureComponent {
 Create the Shared Element Stack Navigator, in my case that's in `Home.js`:
 
 ```js
-import { createSharedElementStackNavigator } from "react-navigation-shared-element";
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element'
 // ...
 // This Spec makes it so that the animation goes from 1000ms (very slow) to 500ms (acceptable) speed! You can also remove it if you want.
 export const iosTransitionSpec = {
-  animation: "spring",
+  animation: 'spring',
   config: {
     stiffness: 1000,
     damping: 500,
@@ -60,9 +60,9 @@ export const iosTransitionSpec = {
     restDisplacementThreshold: 10,
     restSpeedThreshold: 10,
   },
-};
+}
 // ...
-const SharedElementStack = createSharedElementStackNavigator();
+const SharedElementStack = createSharedElementStackNavigator()
 function HomeSharedElementStackNavigator() {
   return (
     <SharedElementStack.Navigator
@@ -81,7 +81,7 @@ function HomeSharedElementStackNavigator() {
           close: iosTransitionSpec,
         },
         // Opacity animation, you can also adjust this by playing with transform properties.
-        cardStyleInterpolator: ({ current: { progress } }) => ({
+        cardStyleInterpolator: ({current: {progress}}) => ({
           cardStyle: {
             opacity: progress,
           },
@@ -94,8 +94,8 @@ function HomeSharedElementStackNavigator() {
         name="ItemDetailsScreen"
         component={ItemDetailsScreen}
         sharedElementsConfig={(route, otherRoute, showing) => {
-          const { item } = route.params;
-          if (route.name === "ItemDetailsScreen" && showing) {
+          const {item} = route.params
+          if (route.name === 'ItemDetailsScreen' && showing) {
             // Open animation fades in image, title and description
             return [
               {
@@ -103,29 +103,29 @@ function HomeSharedElementStackNavigator() {
               },
               {
                 id: `item.${item.id}.title`,
-                animation: "fade",
-                resize: "clip",
-                align: "left-top",
+                animation: 'fade',
+                resize: 'clip',
+                align: 'left-top',
               },
               {
                 id: `item.${item.id}.description`,
-                animation: "fade",
-                resize: "clip",
-                align: "left-top",
+                animation: 'fade',
+                resize: 'clip',
+                align: 'left-top',
               },
-            ];
+            ]
           } else {
             // Close animation only fades out image
             return [
               {
                 id: `item.${item.id}.image`,
               },
-            ];
+            ]
           }
         }}
       />
     </SharedElementStack.Navigator>
-  );
+  )
 }
 ```
 
@@ -171,7 +171,7 @@ In my case, I have a `<FlatList>` layout of individual Items, one Item view may 
 When the user presses this Item, I just call
 
 ```js
-this.props.navigation.navigate("ItemDetailsScreen");
+this.props.navigation.navigate('ItemDetailsScreen')
 ```
 
 which looks like this:
@@ -201,5 +201,6 @@ which looks like this:
 <a href='https://ko-fi.com/F1F8CLXG' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ## Sources
-* [GitHub: IjzerenHein/react-navigation-shared-element (v5 branch)](https://github.com/IjzerenHein/react-navigation-shared-element/blob/navigation-v5/README.md)
-* and a lot of source code digging with no real usage examples
+
+- [GitHub: IjzerenHein/react-navigation-shared-element (v5 branch)](https://github.com/IjzerenHein/react-navigation-shared-element/blob/navigation-v5/README.md)
+- and a lot of source code digging with no real usage examples

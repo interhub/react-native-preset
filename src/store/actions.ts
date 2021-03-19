@@ -1,7 +1,3 @@
-import { actions } from './store'
+import {actions} from './store'
 
-export const {
-	setErrorStringAction,
-	setLoadingAction,
-	setTableInfoAction
-} = actions
+export const {setErrorStringAction, setLoadingAction, setTableInfoAction} = actions

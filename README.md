@@ -1,20 +1,13 @@
 # PATTERN doc
 
-> Шаблон содержит переиспользуемые файлы для конфигурации каждого нового проекта для разработки на REACT NATIVE
-> Для использование требуется скопировать конфигурации разностией файлов в новый проект , а точнее папки <br>
-android, ios, src directory, doc builder и все вкрипты запуска проекта
+> Шаблон содержит переиспользуемые файлы для конфигурации каждого нового проекта для разработки на REACT NATIVE Для использование требуется скопировать конфигурации разностией файлов в новый проект , а точнее папки <br> android, ios, src directory, doc builder и все вкрипты запуска проекта
 
 # 0. Contact, participants and links
 
-> 1. frontend developer: <br>
-     > <https://github.com/interhub> <br>
-     > Stepan Turchenko
+> 1. frontend developer: <br> > <https://github.com/interhub> <br> Stepan Turchenko
 > 2. ...
 
-> !!! developed provide to Mac X OS, for android project build you should be change <br>
-> ./android/local.properties
-> <br>
-> or remove it file.
+> !!! developed provide to Mac X OS, for android project build you should be change <br> ./android/local.properties <br> or remove it file.
 
 ## Documentation link resources
 
@@ -36,6 +29,7 @@ android, ios, src directory, doc builder и все вкрипты запуска
 # 1. NPM **command**
 
 start develpe server
+
 > npm run start:server
 
 <br>
@@ -66,24 +60,24 @@ get full code for once file to word doc (google doc) from .tsx ext
 
 # 2. File **tree** directory
 
-* android - (android studio project for puilding apk and abb bundle)
-* ios - (ios project xcode directory for publish to app store)
-* README.md - (this documentation)
-* App.tsx - (entry application point and providers)
-* scr
-    * api - (files server request and response tool)
-    * components - (reusable application components)
-    * config - (some global configuration for style / navigation / memoizing /animation)
-    * font - (fonts for use in TextLine in all text and info)
-    * hook - (reusable react hooks for change store state and loading app state and selectors)
-    * img - (icons / images / background)
-    * navigators - (react navigation navigators)
-    * screen - (all application screens)
-    * selector - (reselect or redux tool kit selector)
-    * store - (redux or redux tool kit config for store, state, reducer, actions)
-    * test - (integration, unit, hook test and mocks)
-    * tool - (global class for work to location/ notification / login and other state)
-    * vars - (global constant values and application info and Cityes)
+- android - (android studio project for puilding apk and abb bundle)
+- ios - (ios project xcode directory for publish to app store)
+- README.md - (this documentation)
+- App.tsx - (entry application point and providers)
+- scr
+  - api - (files server request and response tool)
+  - components - (reusable application components)
+  - config - (some global configuration for style / navigation / memoizing /animation)
+  - font - (fonts for use in TextLine in all text and info)
+  - hook - (reusable react hooks for change store state and loading app state and selectors)
+  - img - (icons / images / background)
+  - navigators - (react navigation navigators)
+  - screen - (all application screens)
+  - selector - (reselect or redux tool kit selector)
+  - store - (redux or redux tool kit config for store, state, reducer, actions)
+  - test - (integration, unit, hook test and mocks)
+  - tool - (global class for work to location/ notification / login and other state)
+  - vars - (global constant values and application info and Cityes)
 
 <br>
 
@@ -118,8 +112,7 @@ get full code for once file to word doc (google doc) from .tsx ext
 > npm run codepush
 
 ```md
-> npm run codepush command is equal
-> npm run codepush:android && npm run codepush:ios
+> npm run codepush command is equal npm run codepush:android && npm run codepush:ios
 ```
 
 ## Configuration info key file exist to path
@@ -150,7 +143,7 @@ get full code for once file to word doc (google doc) from .tsx ext
 
 ```ts
 // App entry get app component code push HOC
-//.... 
+//....
 
 const codePushOptions = {checkFrequency: codePush.CheckFrequency.MANUAL, installMode: codePush.InstallMode.IMMEDIATE}
 const codePushProvider = codePush(codePushOptions)(ProviderApp)
@@ -167,26 +160,28 @@ export default __DEV__ ? ProviderApp : codePushProvider
 SplashScreen.preventAutoHideAsync()
 
 const useCodePush = () => {
-    const syncCodePush = async (): Promise<boolean> => {
-        return new Promise((ok) => {
-            codePush.sync({installMode: codePush.InstallMode.IMMEDIATE,},
-                (status) => {
-                    switch (status) {
-                        case codePush.SyncStatus.UP_TO_DATE:
-                            SplashScreen.hideAsync();
-                            return ok(true)
-                        case codePush.SyncStatus.UNKNOWN_ERROR:
-                            return ok(true)
-                    }
-                },
-                async (progress) => {
-                    if (progress.receivedBytes === progress.totalBytes) {
-                        setTimeout(ok, SLEEP_TIME, true)
-                    }
-                })
-        })
-    }
-    return {syncCodePush}
+  const syncCodePush = async (): Promise<boolean> => {
+    return new Promise((ok) => {
+      codePush.sync(
+        {installMode: codePush.InstallMode.IMMEDIATE},
+        (status) => {
+          switch (status) {
+            case codePush.SyncStatus.UP_TO_DATE:
+              SplashScreen.hideAsync()
+              return ok(true)
+            case codePush.SyncStatus.UNKNOWN_ERROR:
+              return ok(true)
+          }
+        },
+        async (progress) => {
+          if (progress.receivedBytes === progress.totalBytes) {
+            setTimeout(ok, SLEEP_TIME, true)
+          }
+        },
+      )
+    })
+  }
+  return {syncCodePush}
 }
 export default useCodePush
 ```
@@ -211,11 +206,8 @@ export default useCodePush
 
 # 6. App icon creater
 
-> android - <https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html#foreground.type=image&foreground.space.trim=1&foreground.space.pad=0&foreColor=rgba(96%2C%20125%2C%20139%2C%200)&backColor=rgb(255%2C%20255%2C%20255)&crop=0&backgroundShape=circle&effects=none&name=ic_launcher_rounded> <br>
-> ios - <https://makeappicon.com/>
+> android - <https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html#foreground.type=image&foreground.space.trim=1&foreground.space.pad=0&foreColor=rgba(96%2C%20125%2C%20139%2C%200)&backColor=rgb(255%2C%20255%2C%20255)&crop=0&backgroundShape=circle&effects=none&name=ic_launcher_rounded> <br> ios - <https://makeappicon.com/>
 
 # 7. Eslint config
 
-> add .prettierrc.js and .eslintrc.js file
-> install "yarn add eslint-plugin-import -D && yarn add eslint @react-native-community/eslint-config"
-> run eslint config to IDE for on Save event
+> add .prettierrc.js and .eslintrc.js file install "yarn add eslint-plugin-import -D && yarn add eslint @react-native-community/eslint-config" run eslint config to IDE for on Save event
