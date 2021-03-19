@@ -1,10 +1,9 @@
 import React from 'react'
-import {ScrollView, useWindowDimensions} from 'react-native'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
-import {getStyleByPropsFuncType} from '../../type/types'
+import {ScrollView} from 'react-native'
+
 import SIZE from '../../constants/SIZE'
 import INSERTS from '../../constants/INSERTS'
-import {PaddingTypes, useGetPropsMarginPaddingStyle} from '../../config/styleGenerator'
+import {getStyleByPropsFuncType, PaddingTypes, useGetPropsMarginPaddingStyle} from '../../config/styleGenerator'
 
 type ScrollViewContainerProps<T = React.ComponentPropsWithoutRef<typeof ScrollView>> = T & {
   children: React.ReactNode
@@ -19,8 +18,8 @@ const ScrollViewContainer = (props: ScrollViewContainerProps) => {
 
 const getStyleByProps: getStyleByPropsFuncType<ScrollViewContainerProps> = (props) => {
   const {fullPage = false} = props
-  const marginPadding = useGetPropsMarginPaddingStyle(props)
-  return [marginPadding, fullPage && {minHeight: SIZE.height - INSERTS.bottom}, props.style]
+  const MarginPadding = useGetPropsMarginPaddingStyle(props)
+  return [MarginPadding, fullPage && {minHeight: SIZE.height}, props.style]
 }
 
 export default ScrollViewContainer

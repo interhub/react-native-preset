@@ -1,5 +1,6 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
+
 import {COLOR} from '../../constants/COLOR'
 import TextLine, {ALIGN_TEXT} from '../Custom/TextLine'
 import FullContainer from '../View/FullContainer'

@@ -1,5 +1,6 @@
-import React, {useEffect, useRef} from 'react'
-import {Animated, ImageSourcePropType, View} from 'react-native'
+import React, {useEffect} from 'react'
+import {ImageSourcePropType} from 'react-native'
+import Animated, {useAnimatedStyle, useSharedValue, withSpring} from 'react-native-reanimated'
 
 const ICON_SIZE_DEFAULT = 35
 
@@ -32,15 +33,20 @@ const AnimateIcon = (props: PropsIcon) => {
 }
 
 const useAnimateIconStyle = (active?: boolean) => {
-  const scale = useRef(new Animated.Value(0)).current
+  const state_size = {
+    active: 1,
+    disable: 0.85,
+  }
+  const getActiveState = () => (active ? state_size.active : state_size.disable)
+  const scale = useSharedValue(getActiveState())
 
   useEffect(() => {
-    Animated.spring(scale, {toValue: active ? 1 : 0.85, useNativeDriver: true}).start()
+    scale.value = withSpring(getActiveState())
   }, [active])
 
-  const animStyle = {
-    transform: [{scale}],
-  }
+  const animStyle = useAnimatedStyle(() => ({
+    transform: [{scale: scale.value}],
+  }))
 
   return {animStyle}
 }

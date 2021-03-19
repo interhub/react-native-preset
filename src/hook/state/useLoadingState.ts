@@ -1,8 +1,10 @@
 import {useDispatch} from 'react-redux'
-import {setLoadingAction} from '../../store/actions'
+
 import {useSelectorProp} from './useSelectorProp'
 
-/** 
+import {setLoadingAction} from '../../store/actions'
+
+/**
 @hook for change loading state for some screen to store
 */
 export default () => {

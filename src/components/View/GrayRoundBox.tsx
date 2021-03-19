@@ -1,6 +1,8 @@
 import React from 'react'
 import {StyleSheet, ViewProps} from 'react-native'
+
 import FullContainer from './FullContainer'
+
 import {COLOR} from '../../constants/COLOR'
 
 interface GrayRoundBoxProps {
@@ -10,7 +12,7 @@ interface GrayRoundBoxProps {
 
 const GrayRoundBox = ({children, style}: GrayRoundBoxProps) => {
   return (
-    <FullContainer bg={COLOR.GRAY_LIGHT + '77'} flex={0} style={[styles.container, style]}>
+    <FullContainer bg={COLOR.GRAY_LIGHT} flex={0} style={[styles.container, style]}>
       {children}
     </FullContainer>
   )
@@ -19,6 +21,7 @@ const GrayRoundBox = ({children, style}: GrayRoundBoxProps) => {
 const styles = StyleSheet.create({
   container: {
     borderRadius: 15,
+    overflow: 'hidden',
   },
 })
 

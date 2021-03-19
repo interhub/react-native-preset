@@ -1,8 +1,8 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import {getStyleByPropsFuncType} from '../../type/types'
+
 import {COLOR} from '../../constants/COLOR'
-import {MarginTypes, PaddingTypes, useGetPropsMarginPaddingStyle} from '../../config/styleGenerator'
+import {getStyleByPropsFuncType, MarginTypes, PaddingTypes, useGetPropsMarginPaddingStyle} from '../../config/styleGenerator'
 
 type FullContainerProps<T = React.ComponentPropsWithoutRef<typeof View>> = T & {
   children?: React.ReactNode
@@ -21,13 +21,13 @@ const FullContainer = (props: FullContainerProps) => {
 
 const getStyleByProps: getStyleByPropsFuncType<FullContainerProps> = (props) => {
   const {centerVertical, centerHorisintal, bg = COLOR.NONE, flex = 1, row = false} = props
-  const marginPadding = useGetPropsMarginPaddingStyle(props)
+  const MarginPadding = useGetPropsMarginPaddingStyle(props)
   return [
     centerVertical && {justifyContent: 'center'},
     centerHorisintal && {alignItems: 'center'},
     row && {flexDirection: 'row'},
     {backgroundColor: bg},
-    marginPadding,
+    MarginPadding,
     styles.container,
     {flex},
     props.style,

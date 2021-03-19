@@ -1,9 +1,9 @@
 import React from 'react'
 import {Text} from 'react-native'
+
 import {FONT_NAME} from '../../font/FONT_NAME'
 import {COLOR} from '../../constants/COLOR'
-import {getStyleByPropsFuncType} from '../../type/types'
-import {MarginTypes, useGetPropsMarginPaddingStyle} from '../../config/styleGenerator'
+import {getStyleByPropsFuncType, MarginTypes, PaddingTypes, useGetPropsMarginPaddingStyle} from '../../config/styleGenerator'
 
 export type TextLinePropsType<T = React.ComponentPropsWithoutRef<typeof Text>> = T & {
   children?: string | React.ReactNode
@@ -12,9 +12,8 @@ export type TextLinePropsType<T = React.ComponentPropsWithoutRef<typeof Text>> =
   bold?: boolean
   tint?: boolean
   align?: ALIGN_TEXT
-} & MarginTypes
-
-// export type TextLinePropsType = Props & MarginTypes
+} & MarginTypes &
+  PaddingTypes
 
 export enum ALIGN_TEXT {
   CENTER = 'center',
@@ -33,9 +32,9 @@ const TextLine = (props: TextLinePropsType) => {
 }
 
 const getTextStyleByProp: getStyleByPropsFuncType<TextLinePropsType> = (props) => {
-  const {color = COLOR.BLACK, size = 17, align = ALIGN_TEXT.LEFT, bold = false, tint = false} = props
+  const {color = COLOR.WHITE, size = 17, align = ALIGN_TEXT.LEFT, bold = false, tint = false} = props
 
-  const marginPadding = useGetPropsMarginPaddingStyle(props)
+  const MarginPadding = useGetPropsMarginPaddingStyle(props)
   return [
     {
       color,
@@ -43,7 +42,7 @@ const getTextStyleByProp: getStyleByPropsFuncType<TextLinePropsType> = (props) =
       textAlign: align,
       fontFamily: bold ? FONT_NAME.BOLD : tint ? FONT_NAME.TINT : FONT_NAME.NORM,
     },
-    marginPadding,
+    MarginPadding,
     props.style,
   ]
 }

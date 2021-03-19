@@ -1,8 +1,9 @@
-import {FONT_NAME} from '../../font/FONT_NAME'
 import {loadAsync} from 'expo-font'
 
-/** 
-@hook load font recource local 
+import {FONT_NAME} from '../../font/FONT_NAME'
+
+/**
+@hook load font recource local
 */
 const useFontLoad = () => {
   const loadFont = async () => {

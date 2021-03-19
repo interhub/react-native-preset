@@ -1,35 +1,37 @@
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
-import {StatusBar} from 'expo-status-bar'
 import React from 'react'
+
+import TabsNavigator from './TabsNavigator'
+
 import getScreenAnimation, {SCREEN_ANIMATION} from '../config/getScreenAnimation'
 import navigateRef from '../config/navigateRef'
 import useLoadResource from '../hook/load_config/useLoadResource'
-import ChartPage from '../screen/ChartPage/ChartPage'
-import LoadingPage from '../screen/LoadingPage/LoadingPage'
-import {COLOR} from '../vars/COLOR'
-import {SCREEN_NAME} from '../vars/SCREEN_NAME'
-import TabsNavigator from './TabsNavigator'
+import LoadingScreen from '../screen/LoadingScreen/LoadingScreen'
+import {SCREEN_NAME} from '../constants/SCREEN_NAME'
+import LoginScreen from '../screen/LoginScreen'
 
 const Stack = createStackNavigator()
 
 const AppNavigator = () => {
-  const {isLoaded} = useLoadResource()
-
+  const {isLoaded, isAuth} = useLoadResource()
   return (
     <>
       <NavigationContainer ref={navigateRef}>
-        <Stack.Navigator detachInactiveScreens={false} headerMode={'screen'} initialRouteName={SCREEN_NAME.LOAD_PAGE}>
-          {!isLoaded && <Stack.Screen options={{...getScreenAnimation(SCREEN_ANIMATION.TOP)}} name={SCREEN_NAME.LOAD_PAGE} component={LoadingPage} />}
+        <Stack.Navigator detachInactiveScreens={false} headerMode={'screen'} initialRouteName={SCREEN_NAME.LOAD_SCREEN}>
+          {!isLoaded && <Stack.Screen options={{...getScreenAnimation(SCREEN_ANIMATION.TOP)}} name={SCREEN_NAME.LOAD_SCREEN} component={LoadingScreen} />}
+          {!isAuth && (
+            <>
+              <Stack.Screen options={{...getScreenAnimation(SCREEN_ANIMATION.FADE)}} name={SCREEN_NAME.LOGIN_SCREEN} component={LoginScreen} />
+            </>
+          )}
           {isLoaded && (
             <>
-              <Stack.Screen options={{...getScreenAnimation(SCREEN_ANIMATION.FADE)}} name={SCREEN_NAME.TABS_PAGE} component={TabsNavigator} />
-              <Stack.Screen options={{...getScreenAnimation(SCREEN_ANIMATION.LEFT)}} name={SCREEN_NAME.CHART_PAGE} component={ChartPage} />
+              <Stack.Screen options={{...getScreenAnimation(SCREEN_ANIMATION.LEFT)}} name={SCREEN_NAME.TABS_SCREEN} component={TabsNavigator} />
             </>
           )}
         </Stack.Navigator>
       </NavigationContainer>
-      <StatusBar style={'light'} translucent={true} backgroundColor={COLOR.NONE} />
     </>
   )
 }

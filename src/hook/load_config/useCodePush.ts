@@ -2,7 +2,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import codePush from 'react-native-code-push'
 
 /**
- TIME BEFORE RESET APP START (AFTER UPDATE)
+ TIME BEFORE RESET APP START (AFTER UPDATE) for sync code push
  */
 const SLEEP_TIME = 1000
 
@@ -13,7 +13,9 @@ const hideSplash = () => SplashScreen.hideAsync()
  */
 const useCodePush = () => {
   const syncCodePush = async (): Promise<boolean> => {
-    if (__DEV__) return hideSplash()
+    if (__DEV__) {
+      return hideSplash()
+    }
     return new Promise((ok) => {
       codePush.sync(
         {installMode: codePush.InstallMode.IMMEDIATE},

@@ -1,6 +1,8 @@
 import {useLayoutEffect, useState} from 'react'
+
 import useCodePush from './useCodePush'
 import useFontLoad from './useFontLoad'
+
 import {useSelectorProp} from '../state/useSelectorProp'
 
 /**
@@ -14,13 +16,12 @@ export default () => {
   const {syncCodePush} = useCodePush()
   const {loadFont} = useFontLoad()
 
-  //TODO ADD API REQUESTS START AUTH AND NOT AUTH
   const loadAppResource = async () => {
     try {
       await syncCodePush()
       await loadFont()
     } catch (e) {
-      console.warn(e, 'ERR LOAD RESOURCE AND SPASH')
+      console.warn(e, 'ERR LOAD RESOURCE AND HIDE SPLASH SCREEN')
     } finally {
       setIsLoaded(true)
     }

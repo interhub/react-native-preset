@@ -1,13 +1,13 @@
 import React from 'react'
-import {ActivityIndicator, StyleSheet, TouchableOpacity, View} from 'react-native'
-import getShadow from '../../config/getShadow'
-import {getStyleByPropsFuncType} from '../../type/types'
-import {COLOR} from '../../constants/COLOR'
-import TextLine, {TextLinePropsType} from './TextLine'
-import {MarginTypes, useGetPropsMarginPaddingStyle} from '../../config/styleGenerator'
-import SIZE from '../../constants/SIZE'
+import {ActivityIndicator, StyleSheet, TouchableOpacity} from 'react-native'
 
-export const BTN_SIZE = 40 + SIZE.height * 0.03
+import TextLine, {TextLinePropsType} from './TextLine'
+
+import getShadow from '../../config/getShadow'
+import {COLOR} from '../../constants/COLOR'
+import {getStyleByPropsFuncType, MarginTypes} from '../../config/styleGenerator'
+
+export const BTN_SIZE = 55
 
 type ButtonCustomPropsType<T = React.ComponentPropsWithoutRef<typeof TouchableOpacity>> = T & {
   disabled?: boolean
@@ -23,31 +23,23 @@ const ButtonCustom = (props: ButtonCustomPropsType) => {
   const {disabled, onPress, children, textProps = {}, loading} = props
 
   const style = getStyleByProps(props)
-  const containerStyle = getContainerStyle(props)
+  const isAccessPress = !disabled && !loading
 
   return (
-    <View style={containerStyle}>
-      <TouchableOpacity onPress={!disabled ? onPress : () => null} style={style} {...props}>
-        {!loading && (
-          <TextLine numberOfLines={1} color={COLOR.WHITE} {...textProps}>
-            {children}
-          </TextLine>
-        )}
-        {loading && <ActivityIndicator color={COLOR.WHITE} />}
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity onPress={isAccessPress ? onPress : () => null} {...props} style={style}>
+      {!loading && (
+        <TextLine numberOfLines={1} color={COLOR.BLACK_LIGHT} {...textProps}>
+          {children}
+        </TextLine>
+      )}
+      {loading && <ActivityIndicator color={COLOR.BLACK_LIGHT} />}
+    </TouchableOpacity>
   )
 }
 
 const getStyleByProps: getStyleByPropsFuncType<ButtonCustomPropsType> = (props) => {
   const {bg = COLOR.PRIMARY, shadow = 0.5} = props
-  const {marginVertical} = useGetPropsMarginPaddingStyle(props)
-  return [styles.btnBox, {backgroundColor: bg, marginVertical, ...getShadow(shadow)}]
-}
-const getContainerStyle: getStyleByPropsFuncType<ButtonCustomPropsType> = (props) => {
-  const {marginHorizontal, margin, marginTop} = useGetPropsMarginPaddingStyle(props)
-  //dont replace its costil
-  return {paddingHorizontal: marginHorizontal, margin, marginTop}
+  return [styles.btnBox, {backgroundColor: bg, ...getShadow(shadow)}, props.style]
 }
 
 const styles = StyleSheet.create({

@@ -1,29 +1,28 @@
 import React, {MutableRefObject} from 'react'
 import {StyleSheet, TextInput, View} from 'react-native'
-import {TextInputMask} from 'react-native-masked-text'
-import {FONT_NAME} from '../../font/FONT_NAME'
-import {getStyleByPropsFuncType} from '../../type/types'
-import {COLOR} from '../../constants/COLOR'
-import DividerCustom from './DividerCustom'
+
 import TextLine from './TextLine'
-import {MarginTypes, useGetPropsMarginPaddingStyle} from '../../config/styleGenerator'
+
+import {FONT_NAME} from '../../font/FONT_NAME'
+import {COLOR} from '../../constants/COLOR'
+import {getStyleByPropsFuncType, MarginTypes, useGetPropsMarginPaddingStyle} from '../../config/styleGenerator'
+import FullContainer from '../View/FullContainer'
 
 type TextInputCustomProps<T = React.ComponentPropsWithoutRef<typeof TextInput>> = T & {
   label?: string
   placeholder?: string
-  mask?: string
-  refs?: MutableRefObject<(TextInputMask & TextInput) | null>
+  refs?: MutableRefObject<TextInput | null>
 } & MarginTypes
 
 const TextInputCustom = (props: TextInputCustomProps) => {
-  const {label = '', mask = '', placeholder = '', refs} = props
+  const {label = '', refs} = props
 
   const input_props = {
-    maxLength: mask?.length || 500,
     style: styles.input,
     ref: refs,
     ...props,
   }
+
   const containerStyle = getContainerStyle(props)
 
   return (
@@ -32,44 +31,40 @@ const TextInputCustom = (props: TextInputCustomProps) => {
       <TextLine color={COLOR.GRAY_DARK} mh={5} size={14}>
         {label}
       </TextLine>
-
       {/* BLOCK INPUT */}
       <View style={styles.inputBox}>
-        {!mask && <TextInput {...input_props} />}
-        {!!mask && (
-          <TextInputMask
-            {...input_props}
-            type={'cel-phone'}
-            options={{
-              maskType: 'BRL',
-              withDDD: true,
-              dddMask: mask,
-            }}
-          />
-        )}
+        <FullContainer style={[styles.fill]} />
+        <TextInput placeholderTextColor={COLOR.GRAY_DARK} maxLength={500} {...input_props} />
       </View>
-      <DividerCustom />
     </View>
   )
 }
 
 const getContainerStyle: getStyleByPropsFuncType<TextInputCustomProps> = (props) => {
-  const marginPadding = useGetPropsMarginPaddingStyle(props)
-
-  return [styles.container, marginPadding]
+  const MarginPadding = useGetPropsMarginPaddingStyle(props)
+  return [styles.container, MarginPadding]
 }
 
 const styles = StyleSheet.create({
   container: {},
-  inputBox: {},
+  inputBox: {
+    height: 55,
+    justifyContent: 'center',
+  },
+  fill: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: COLOR.GRAY_DARK,
+    opacity: 0.2,
+    borderRadius: 15,
+  },
   input: {
-    fontFamily: FONT_NAME.BOLD,
+    fontFamily: FONT_NAME.NORM,
     fontWeight: 'bold',
     fontSize: 18,
     padding: 0,
     paddingLeft: 5,
     bottom: 0,
-    color: COLOR.BLACK,
+    color: COLOR.GRAY_LIGHT,
   },
 })
 

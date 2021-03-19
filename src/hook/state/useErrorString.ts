@@ -1,9 +1,11 @@
 import {useEffect} from 'react'
 import {useDispatch} from 'react-redux'
-import {setErrorStringAction} from '../../store/actions'
+
 import {useSelectorProp} from './useSelectorProp'
 
-/** 
+import {setErrorStringAction} from '../../store/actions'
+
+/**
 @hook for change store error state to some screen component
 */
 export default () => {

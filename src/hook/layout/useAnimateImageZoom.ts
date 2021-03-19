@@ -1,22 +1,21 @@
-import {useEffect, useRef} from 'react'
-import {Animated} from 'react-native'
+import {useEffect} from 'react'
+import {useAnimatedStyle, useSharedValue, withRepeat, withSequence, withTiming} from 'react-native-reanimated'
 
-/** 
-animate zoom image Animated hook from native react native
-*/
+/**
+ animate zoom image Animated hook from native react native
+ */
 const useAnimateImageZoom = () => {
-  const pos_state = {start: 1.1, end: 1}
+  const pos_state = {start: 0.8, end: 1}
   const duration = 10000
-  const scale = useRef(new Animated.Value(pos_state.start)).current
+  const animate = useSharedValue(pos_state.start)
   useEffect(() => {
-    const loop = () =>
-      Animated.sequence([Animated.timing(scale, {toValue: pos_state.end, useNativeDriver: true, duration}), Animated.timing(scale, {toValue: pos_state.start, useNativeDriver: true, duration})]).start(
-        loop,
-      )
-    loop()
+    animate.value = withRepeat(withSequence(withTiming(pos_state.end, {duration}), withTiming(pos_state.start, {duration})), -1)
   }, [])
+  const imgStyle = useAnimatedStyle(() => ({
+    transform: [{scale: animate.value}],
+  }))
   return {
-    transform: [{scale}],
+    imgStyle,
   }
 }
 export default useAnimateImageZoom
