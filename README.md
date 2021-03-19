@@ -31,6 +31,7 @@ android, ios, src directory, doc builder и все вкрипты запуска
 - [redux doc](https://redux.js.org/introduction/getting-started)
 - [redux tool kit doc](https://redux-toolkit.js.org/introduction/quick-start)
 - [react-navigation-shared-element doc](https://gist.github.com/mrousavy/6029c7a4eb58f7603e79a136053ff976)
+- [apollo graphql doc](https://www.apollographql.com/docs/react/)
 
 # 1. NPM **command**
 
@@ -129,7 +130,7 @@ get full code for once file to word doc (google doc) from .tsx ext
 
 ```plist
 <key>CodePushDeploymentKey</key>
-<string>sNXAQWGOlq1eei2a6OKw81Y9yfDNS_HbyWHSO</string>
+<string>sNXAQWGOlq1eei2a6OKw81Y9yfDNS_*****</string>
 ```
 
 ### > android
@@ -138,7 +139,7 @@ get full code for once file to word doc (google doc) from .tsx ext
 
 ```xml
 
-<string moduleConfig="true" name="CodePushDeploymentKey">NWQtuOTEmDqbXRVdiv5M_ay76U4xLXkIze47v</string>
+<string moduleConfig="true" name="CodePushDeploymentKey">NWQtuOTEmDqbXRVdiv5M_ay76U4xLX****</string>
 ```
 
 <br>
@@ -212,3 +213,9 @@ export default useCodePush
 
 > android - <https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html#foreground.type=image&foreground.space.trim=1&foreground.space.pad=0&foreColor=rgba(96%2C%20125%2C%20139%2C%200)&backColor=rgb(255%2C%20255%2C%20255)&crop=0&backgroundShape=circle&effects=none&name=ic_launcher_rounded> <br>
 > ios - <https://makeappicon.com/>
+
+# 7. Eslint config
+
+> add .prettierrc.js and .eslintrc.js file
+> install "yarn add eslint-plugin-import -D && yarn add eslint @react-native-community/eslint-config"
+> run eslint config to IDE for on Save event

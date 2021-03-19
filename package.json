@@ -19,7 +19,7 @@
     "documentation:word": "cd doc_builder && node builder.js",
     "xcode:open": "xed ./ios",
     "android_studio:open": "open -a Android\\ Studio \"android\"",
-    "start": "react-native start"
+    "lint": "npx eslint . --fix ; npx prettier --write ."
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.13.4",
@@ -67,7 +67,9 @@
     "jest": "~25.2.6",
     "jest-expo": "~40.0.0",
     "react-test-renderer": "~16.13.1",
-    "typescript": "~4.0.0"
+    "typescript": "~4.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint": "^7.22.0"
   },
   "jest": {
     "preset": "react-native"

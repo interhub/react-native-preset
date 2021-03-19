@@ -5,11 +5,11 @@ import { StateType, TableInfoItemType } from './../type/types'
 import state from './state'
 
 export const {
-	/** 
+	/**
 	redux initial reducer and actions for change state (by redux-tool-kit doc  https://redux-toolkit.js.org  )
 	*/
 	reducer,
-	/** 
+	/**
 	actions for store dispatching  https://redux-toolkit.js.org  )
 	*/
 	actions
@@ -23,13 +23,13 @@ export const {
 	}
 })
 
-/** 
-redux persist config by doc form  https://www.npmjs.com/package/redux-persist 
+/**
+redux persist config by doc form  https://www.npmjs.com/package/redux-persist
 */
 const persistConfig: PersistConfig<StateType> = {
 	key: 'root',
 	storage: AsyncStorage,
-	blacklist: ['loading', 'error', 'menu'],
+	blacklist: ['loading', 'error', 'menu',]  as (keyof StateType)[]
 }
 const persistedReducer = persistReducer(persistConfig, reducer)
 
@@ -38,7 +38,7 @@ const middleware = getDefaultMiddleware({
 	serializableCheck: false,
 })
 
-/** 
+/**
 application redux store by redux doc  https://react-redux.js.org/  and create use redux-tool-kit doc  https://redux-toolkit.js.org )
 */
 const store = configureStore({
@@ -48,8 +48,8 @@ const store = configureStore({
 	preloadedState: state,
 })
 
-/** 
-redux persist config by doc form  https://www.npmjs.com/package/redux-persist 
+/**
+redux persist config by doc form  https://www.npmjs.com/package/redux-persist
 */
 const persistor = persistStore(store as any)
 
