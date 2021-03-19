@@ -1,33 +1,34 @@
 {
-  "name": "poloniex",
-  "displayName": "Poloniex",
+  "name": "stayfitt",
+  "displayName": "stayfitt",
   "expo": {
-    "name": "poloniex",
-    "slug": "poloniex",
+    "name": "stayfitt",
+    "slug": "stayfitt",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "orientation": "portrait",
-    "icon": "./assets/logo_big.png",
+    "icon": "./assets/icon.png",
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.interhub.poloniex"
+      "bundleIdentifier": "com.interhub.stayfitt"
     },
     "android": {
-      "package": "com.interhub.poloniex",
-      "googleServicesFile": "./google-services.json",
+      "package": "com.interhub.stayfitt",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/logo_big.png",
-        "backgroundColor": "#092838"
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#DCF763"
       }
     },
     "androidNavigationBar": {
-      "backgroundColor": "#092838",
+      "backgroundColor": "#DCF763",
       "barStyle": "dark-content"
     },
     "splash": {
-      "image": "./scr/img/assets/splash.png",
+      "image": "./assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#092838"
+      "backgroundColor": "#FFFFFF"
     }
   }
 }
