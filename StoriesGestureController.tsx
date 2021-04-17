@@ -10,6 +10,10 @@ import SIZE from '../../../../config/SIZE';
 
 interface StoriesGestureControllerProps {
   children: React.ReactNode;
+  storiesControl: StoriesControlType;
+}
+
+export interface StoriesControlType {
   nextStory: () => void;
   prevStory: () => void;
   onPressIn: () => void;
@@ -17,15 +21,14 @@ interface StoriesGestureControllerProps {
 }
 
 const StoriesGestureController = ({
-  onPressIn,
-  onPressOut,
-  nextStory,
-  prevStory,
-  children,
-}: StoriesGestureControllerProps) => {
+                                    storiesControl,
+                                    children,
+                                  }: StoriesGestureControllerProps) => {
+  const {nextStory, prevStory, onPressIn, onPressOut} = storiesControl;
+
   const onHandlerStateChangeTap = ({
-    nativeEvent: {state, absoluteX},
-  }: TapGestureHandlerStateChangeEvent) => {
+                                     nativeEvent: {state, absoluteX},
+                                   }: TapGestureHandlerStateChangeEvent) => {
     // console.log(State, 'event', state, 'onHandlerStateChangeTap');
     switch (state) {
       case State.BEGAN:
@@ -40,8 +43,8 @@ const StoriesGestureController = ({
   };
 
   const onHandlerStateChangeLong = ({
-    nativeEvent: {state},
-  }: TapGestureHandlerStateChangeEvent) => {
+                                      nativeEvent: {state},
+                                    }: TapGestureHandlerStateChangeEvent) => {
     // console.log(State, 'event', state, 'onHandlerStateChangeLong');
     switch (state) {
       case State.ACTIVE:
@@ -56,15 +59,15 @@ const StoriesGestureController = ({
   const longRef = useRef<LongPressGestureHandler>(null);
 
   return (
-    <TapGestureHandler
-      waitFor={longRef}
-      onHandlerStateChange={onHandlerStateChangeTap}>
-      <LongPressGestureHandler
-        ref={longRef}
-        onHandlerStateChange={onHandlerStateChangeLong}>
-        <Animated.View style={{flex: 1}}>{children}</Animated.View>
-      </LongPressGestureHandler>
-    </TapGestureHandler>
+      <TapGestureHandler
+          waitFor={longRef}
+          onHandlerStateChange={onHandlerStateChangeTap}>
+        <LongPressGestureHandler
+            ref={longRef}
+            onHandlerStateChange={onHandlerStateChangeLong}>
+          <Animated.View style={{flex: 1}}>{children}</Animated.View>
+        </LongPressGestureHandler>
+      </TapGestureHandler>
   );
 };
 
